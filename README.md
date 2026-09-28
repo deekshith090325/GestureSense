@@ -57,7 +57,6 @@ The program uses the Mediapipe library to detect landmarks on the hand and finge
 
 During execution, the program uses the webcam to capture video frames, applies the Mediapipe hand detection model to detect the hand in each frame, and extracts the hand landmarks. The extracted landmarks are then passed to the classification model, which predicts the class of the hand gesture. The predicted class is displayed on the video stream in real-time.
 
-![Process image](images/process.png)
 
 ## File Descriptions
 
@@ -67,9 +66,7 @@ During execution, the program uses the webcam to capture video frames, applies t
 - `ISL_classifier.ipynb`: The notebook is used to create a classifier model to classify the hand gestures.
 - `model.h5`: This is the classifier model.
 
-### Examples
-![example image 1](images/example1.png)
-![example image 2](images/example2.png)
+
 
 ### Future Improvements
 
