@@ -1,13 +1,14 @@
 # GestureSense
 
 Real-time Indian Sign Language (ISL) gesture recognition using MediaPipe hand
-landmarks and a TensorFlow/Keras classifier.
+landmarks and a dense neural network classifier.
 
 ## How It Works
-1. **Landmark extraction:** MediaPipe detects the hand in each webcam frame and
-   extracts hand landmarks (42 values per sample).
-2. **Classification:** a TensorFlow/Keras model, [LSTM / dense neural network -
-   write what your notebook actually uses], predicts the ISL gesture from the landmarks.
+1. **Landmark extraction:** MediaPipe detects the hand in each frame and extracts
+   42 hand-landmark features per sample.
+2. **Classification:** a fully-connected (dense) neural network — 4 hidden layers
+   (1470 → 832 → 428 → 264 units, ReLU, with Dropout) and a softmax output layer —
+   classifies the landmarks into one of 3 ISL gesture classes (A, B, C).
 3. **Real-time output:** the predicted gesture is displayed live on the webcam feed.
 
 ## Project Structure
@@ -18,24 +19,22 @@ landmarks and a TensorFlow/Keras classifier.
 - `model.h5`: trained classifier model
 
 ## Tech Stack
-Python, MediaPipe, TensorFlow/Keras, OpenCV, NumPy, Pandas
+Python, MediaPipe, TensorFlow/Keras, OpenCV, NumPy, Pandas, scikit-learn
 
 ## Setup
 1. Clone the repo:
    `git clone https://github.com/deekshith090325/GestureSense`
 2. Install dependencies:
-   `pip install opencv-python mediapipe tensorflow numpy pandas`
+   `pip install -r requirements.txt`
 3. Run real-time detection:
    `python isl_detection.py`
 
-Press `q` to quit the webcam window. [check that this matches your script]
-
 ## Results
-- Test accuracy: [xx%, copy from the last cell of ISL_classifier.ipynb]
-- Number of gesture classes: [n]
+Achieved 100% accuracy, precision, recall, and F1-score on the held-out test
+split (3 gesture classes).
 
 ## Limitations & Future Work
-- Small dataset; more samples per gesture would improve accuracy
-- Currently shows the predicted gesture as a label; text/speech output and a GUI
+- Currently supports only 3 gesture classes (A, B, C); needs a full ISL alphabet
+- Small dataset; a larger and more varied dataset would improve robustness
+- Displays the predicted gesture as a label only — text/speech output and a GUI
   are not built yet
-- Support for more ISL gestures
